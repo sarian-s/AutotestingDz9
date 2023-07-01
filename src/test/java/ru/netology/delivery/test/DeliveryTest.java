@@ -28,14 +28,17 @@ class DeliveryTest {
         $(".checkbox__text").click();
         $(".button__text").click();
         $("[data-test-id=success-notification]").shouldBe(visible, Duration.ofSeconds(14));
-        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.generateDate(4)));
+        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.generateDate(4)))
+                .shouldBe(visible);
         $("[data-test-id=success-notification] [class=icon-button__content]").click();
         $("[data-test-id=date]").$("[class=input__control]").doubleClick().sendKeys(BACK_SPACE);
         $("[data-test-id=date]").$("[class=input__control]").setValue(DataGenerator.generateDate(10));
         $(".button__text").click();
+        $("[data-test-id=replan-notification] [class=notification__content]").shouldHave(exactText("У вас уже запланирована встреча на другую дату. Перепланировать?"))
+                .shouldBe(visible);
         $("[data-test-id=replan-notification] [class=button__content]").click();
-        $("[data-test-id=success-notification]").shouldBe(visible, Duration.ofSeconds(14));
-        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.generateDate(10)));
+        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.generateDate(10)))
+                .shouldBe(visible);
     }
     @Test
     @DisplayName("Should successful plan and replan meeting")
@@ -48,12 +51,13 @@ class DeliveryTest {
         $(".checkbox__text").click();
         $(".button__text").click();
         $("[data-test-id=success-notification]").shouldBe(visible, Duration.ofSeconds(14));
-        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.generateDate(4)));
-        $("[data-test-id=success-notification] [class=icon-button__content]").click();
+        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("Встреча успешно запланирована на " + DataGenerator.generateDate(4)))
+                .shouldBe(visible);
+    $("[data-test-id=success-notification] [class=icon-button__content]").click();
         $("[data-test-id=date]").$("[class=input__control]").doubleClick().sendKeys(BACK_SPACE);
         $("[data-test-id=date]").$("[class=input__control]").setValue(DataGenerator.generateDate(4));
         $(".button__text").click();
-        $("[data-test-id=success-notification]").shouldBe(visible, Duration.ofSeconds(14));
-        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("У вас уже запланирована встреча на эту дату "));
+        $("[data-test-id=success-notification] [class=notification__content]").shouldHave(exactText("У вас уже запланирована встреча на эту дату "))
+                .shouldBe(visible);
     }
 }
