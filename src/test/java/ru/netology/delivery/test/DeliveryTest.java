@@ -11,9 +11,9 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.openqa.selenium.Keys.BACK_SPACE;
 
 public class DeliveryTest {
-    DataGenerator dataGenerator = new DataGenerator();
-    String date = dataGenerator.generateDate(4);
-    String changeTheDate = dataGenerator.generateDate(10);
+
+    String date = DataGenerator.generateDate(4);
+    String changeTheDate = DataGenerator.generateDate(10);
 
 
     @BeforeEach
