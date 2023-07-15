@@ -1,7 +1,7 @@
 package ru.netology.delivery.test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.*;
 import ru.netology.delivery.data.DataGenerator;
 import java.time.Duration;
 import static com.codeborne.selenide.Condition.exactText;
@@ -11,6 +11,15 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.openqa.selenium.Keys.BACK_SPACE;
 
 public class DeliveryTest {
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("Allure", new AllureSelenide());
+    }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
+    }
 
     String date = DataGenerator.generateDate(4);
     String changeTheDate = DataGenerator.generateDate(10);
